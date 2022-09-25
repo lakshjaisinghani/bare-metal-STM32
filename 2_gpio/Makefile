@@ -6,7 +6,6 @@ BUILD_DIR = build
 C_SOURCES = $(shell find . -name "*.c")
 ASM_SOURCES = $(shell find . -name "*.s")
 
-
 PREFIX = arm-none-eabi
 CC = $(PREFIX)-gcc
 AS = $(PREFIX)-as
@@ -20,7 +19,7 @@ BIN = $(CP) -O binary
 CPU = -mcpu=cortex-m0
 MCU = $(CPU) -mthumb -g
 
-C_INCLUDES = -Iinc
+C_INCLUDES = -Iinclude
 CFLAGS = $(MCU) $(C_INCLUDES)
 
 LDSCRIPT = STM32.ld

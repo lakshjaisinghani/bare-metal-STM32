@@ -20,7 +20,7 @@ BIN = $(CP) -O binary
 CPU = -mcpu=cortex-m0
 MCU = $(CPU) -mthumb -g
 
-C_INCLUDES = -Iinc
+C_INCLUDES = -Iinclude
 CFLAGS = $(MCU) $(C_INCLUDES)
 
 LDSCRIPT = STM32.ld
