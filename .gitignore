@@ -1,0 +1,6 @@
+# ignore all build files
+*/*.o
+*/*.elf
+*/build/*.o
+*/build/*.elf
+*/build/*.bin
