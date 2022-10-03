@@ -42,8 +42,8 @@ int main(void) {
     // see 9.1.5 in reference manual
     // need to write x010 to bits 7-4 of SYSCFG_EXTICR4 
     SYSCFG->EXTICR[3] &= ~(0xF << ((BUTTON_PIN % 4) * 4)); 
-    SYSCFG->EXTICR[3] |=  (0x010 << ((BUTTON_PIN % 4) * 4)); 
-    
+    SYSCFG->EXTICR[3] |=  (0x2 << ((BUTTON_PIN % 4) * 4)); 
+
     /*
         These are the interrupt regesters that handle
         the schedule. 
@@ -61,7 +61,7 @@ int main(void) {
     EXTI->FTSR |=  (1 << BUTTON_PIN);
 
     // Enable the NVIC interrupt for EXTI0 and EXTI1 at minimum priority.
-    NVIC_SetPriority(EXTI4_15_IRQn, 0x00);
+    NVIC_SetPriority(EXTI4_15_IRQn, 0x03);
     NVIC_EnableIRQ(EXTI4_15_IRQn);
     led_on = 0;
 
