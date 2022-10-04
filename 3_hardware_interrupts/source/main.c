@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include "stm32f070xb.h"
 
+
 // define GPIO mappings
 #define BUTTON_PIN (13) // PC13 -> GPIOC pin 13
 #define LED_PIN (5)     // PA5 -> GPIOA pin 5
