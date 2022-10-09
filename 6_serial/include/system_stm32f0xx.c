@@ -45,7 +45,7 @@
   * @{
   */
 
-#include "stm32f0xx.h"
+#include "./6_serial/include/stm32f0xx.h"
 
 /**
   * @}

@@ -4,7 +4,8 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/template/include"
+                "${workspaceFolder}/template/include",
+                "${workspaceFolder}/6_serial/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang-10",
