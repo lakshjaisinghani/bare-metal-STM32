@@ -4,6 +4,8 @@
 
 - [X] Run a c program
 
+- [ ] Memory allocation 
+
 - [X] GPIO 
 
 - [X] hardware interrupts
@@ -12,11 +14,15 @@
 
 - [ ] Debugging using openOCD and GDB
 
+- [ ] Serial communication
+
 - [ ] DACs
 
-- [ ] timers
+- [ ] timers and timer-interrupts
+
+- [ ] real-time clocks
 
 - [ ] DMA
 
-- [ ] Serial communication
+- [ ] Bootloader
 

@@ -8,12 +8,12 @@ ASM_SOURCES = $(shell find . -name "*.s")
 
 
 PREFIX = arm-none-eabi
-CC = $(PREFIX)-gcc.exe
-AS = $(PREFIX)-as.exe
-CP = $(PREFIX)-objcopy.exe
-LD = $(PREFIX)-ld.bfd.exe
-SZ = $(PREFIX)-size.exe
-GDB = $(PREFIX)-gdb.exe
+CC = $(PREFIX)-gcc
+AS = $(PREFIX)-as
+CP = $(PREFIX)-objcopy
+LD = $(PREFIX)-ld.bfd
+SZ = $(PREFIX)-size
+GDB = $(PREFIX)-gdb
 
 BIN = $(CP) -O binary
 
