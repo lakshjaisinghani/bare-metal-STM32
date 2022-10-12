@@ -7,8 +7,6 @@
 #define UART_TX (2)
 #define UART_RX (3)
 
-uint32_t SystemCoreClock = 8000000; // 8MHz
-
 void uart_init(void) {
     // enable usart and GPIO clocks
     RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
@@ -33,7 +31,7 @@ void uart_init(void) {
     GPIOA->AFR[0] |=  ( ( 0x1 << (UART_RX * 4 ) ) ); // not the refrence manual.
 
     // set baud_rate
-    uint16_t uartdiv = SystemCoreClock / 9600;
+    uint16_t uartdiv = 833;
     USART2->BRR = uartdiv; 
 
     // Enable the USART peripheral.

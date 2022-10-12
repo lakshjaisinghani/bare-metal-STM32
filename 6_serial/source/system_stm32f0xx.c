@@ -45,7 +45,7 @@
   * @{
   */
 
-#include "./6_serial/include/stm32f0xx.h"
+#include "stm32f0xx.h"
 
 /**
   * @}
@@ -202,7 +202,8 @@ void SystemCoreClockUpdate (void)
       if (pllsource == RCC_CFGR_PLLSRC_HSE_PREDIV)
       {
         /* HSE used as PLL clock source : SystemCoreClock = HSE/PREDIV * PLLMUL */
-        SystemCoreClock = (HSE_VALUE/predivfactor) * pllmull;
+        SystemCoreClock = HSI_VALUE;
+        // SystemCoreClock = (HSE_VALUE/predivfactor) * pllmull;
       }
 #if defined(STM32F042x6) || defined(STM32F048xx) || defined(STM32F072xB) || defined(STM32F078xx) || defined(STM32F091xC) || defined(STM32F098xx)
       else if (pllsource == RCC_CFGR_PLLSRC_HSI48_PREDIV)
@@ -217,7 +218,8 @@ void SystemCoreClockUpdate (void)
  || defined(STM32F078xx) || defined(STM32F071xB)  || defined(STM32F072xB) \
  || defined(STM32F070xB) || defined(STM32F091xC) || defined(STM32F098xx)  || defined(STM32F030xC)
         /* HSI used as PLL clock source : SystemCoreClock = HSI/PREDIV * PLLMUL */
-        SystemCoreClock = (HSI_VALUE/predivfactor) * pllmull;
+        // SystemCoreClock = (HSI_VALUE/predivfactor) * pllmull;
+        SystemCoreClock = HSI_VALUE;
 #else
         /* HSI used as PLL clock source : SystemCoreClock = HSI/2 * PLLMUL */
         SystemCoreClock = (HSI_VALUE >> 1) * pllmull;
