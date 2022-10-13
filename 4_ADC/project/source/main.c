@@ -2,6 +2,8 @@
 #define _ADC_H
 
 #include <stdint.h>
+
+#include "z.h"
 #include "stm32f070xb.h"
 
 int pot_val;
@@ -10,7 +12,9 @@ int pot_val;
 #define ADC_PIN (5)
 
 // your main code 
-int main(void) { 
+int main(void) {
+
+    int num = two(); 
 
     // enable RCC 
     RCC->AHBENR |= RCC_AHBENR_GPIOAEN;

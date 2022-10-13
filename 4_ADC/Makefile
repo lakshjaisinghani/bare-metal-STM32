@@ -20,7 +20,8 @@ BIN = $(CP) -O binary
 CPU = -mcpu=cortex-m0
 MCU = $(CPU) -mthumb -g
 
-C_INCLUDES = -Iinclude
+INCLUDE_DIRS := include project/include
+C_INCLUDES = $(foreach D,$(INCLUDE_DIRS), -I$(D))
 CFLAGS = $(MCU) $(C_INCLUDES)
 
 LDSCRIPT = STM32.ld
@@ -35,9 +36,13 @@ OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(C_SOURCES:.c=.o)))
 vpath %.c $(sort $(dir $(C_SOURCES)))
 
 $(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
+	@echo c files
+	@echo $@
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.o: %.s | $(BUILD_DIR)
+	@echo s files
+	@echo $@
 	$(AS) $< -o $@
 
 $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) | $(BUILD_DIR)
@@ -51,6 +56,8 @@ $(BUILD_DIR):
 	mkdir $@
 
 list:
+	@echo $(C_INCLUDES)
+	@echo $(OBJECTS)
 	@echo $(shell find . -name "*.c")
 	@echo $(shell find . -name "*.s")
 
