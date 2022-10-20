@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "stm32f070xb.h"
+#include "system_stm32f0xx.h"
 
 #define UART_TX (2)
 #define UART_RX (3)
@@ -31,11 +32,11 @@ void uart_init(void) {
     GPIOA->AFR[0] |=  ( ( 0x1 << (UART_RX * 4 ) ) ); // not the refrence manual.
 
     // set baud_rate
-    uint16_t uartdiv = 833;
+    uint16_t uartdiv = SystemCoreClock/9600;
     USART2->BRR = uartdiv; 
 
     // Enable the USART peripheral.
-    USART2->CR1 |= ( USART_CR1_RE | USART_CR1_TE | USART_CR1_UE );
+    USART2->CR1 |= ( USART_CR1_RE | USART_CR1_UE );
 }
 
 // your main code 
@@ -47,6 +48,7 @@ int main(void) {
     char rxb = 'A';
     
     while (1) {
+        USART2->CR1 |= USART_CR1_TE;
         USART2->TDR = rxb;
         while ((USART2->ISR & USART_ISR_TC) == 1);
     }

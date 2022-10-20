@@ -22,9 +22,16 @@ MCU = $(CPU) -mthumb -g
 
 C_INCLUDES = -Iinclude
 CFLAGS = $(MCU) $(C_INCLUDES)
+CFLAGS += -msoft-float
+CFLAGS += -mfloat-abi=soft
+CFLAGS += -g
+CFLAGS += -nostdlib
+CFLAGS += -fmessage-length=0
+CFLAGS += --specs=nosys.specs
 
 LDSCRIPT = STM32.ld
 LDFLAGS = -T $(LDSCRIPT)
+CFLAGS += $(LDFLAGS)
 
 all: $(BUILD_DIR)/$(TARGET).bin
 
@@ -41,7 +48,7 @@ $(BUILD_DIR)/%.o: %.s | $(BUILD_DIR)
 	$(AS) $< -o $@
 
 $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) | $(BUILD_DIR)
-	$(LD) $(LDFLAGS) $(OBJECTS) -o $@
+	$(CC) $(CFLAGS) $(OBJECTS) -o $@ -lgcc
 	$(SZ) $@
 
 $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
@@ -59,3 +66,6 @@ clean:
 
 flash:
 	st-flash --reset write ./$(BUILD_DIR)/$(TARGET).bin 0x08000000
+
+test:
+	@echo $(OBJECTS)
