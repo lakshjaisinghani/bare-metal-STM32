@@ -12,9 +12,9 @@
 
 - [X] ADCs
 
-- [ ] Debugging using openOCD and GDB
-
 - [ ] Serial communication
+
+- [ ] Debugging using openOCD and GDB
 
 - [ ] DACs
 
