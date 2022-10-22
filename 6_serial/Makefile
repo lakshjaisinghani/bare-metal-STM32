@@ -31,7 +31,7 @@ CFLAGS += --specs=nosys.specs
 
 LDSCRIPT = STM32.ld
 LDFLAGS = -T $(LDSCRIPT)
-CFLAGS += $(LDFLAGS)
+LDFLAGS += -Wl,-Map=build/main.map 
 
 all: $(BUILD_DIR)/$(TARGET).bin
 
@@ -48,7 +48,7 @@ $(BUILD_DIR)/%.o: %.s | $(BUILD_DIR)
 	$(AS) $< -o $@
 
 $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) | $(BUILD_DIR)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $@ -lgcc
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJECTS) -o $@ -lgcc
 	$(SZ) $@
 
 $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.elf | $(BUILD_DIR)

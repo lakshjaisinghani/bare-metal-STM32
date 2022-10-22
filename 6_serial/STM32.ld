@@ -1,4 +1,4 @@
-ENTRY(reset_handler)
+ENTRY(Reset_Handler)
 
 /*
     Here I am using a Nucleo-F070RB : https://os.mbed.com/platforms/ST-Nucleo-F070RB/
@@ -13,7 +13,7 @@ _estack = 0x20004000;
 /* (The linker will generate an error if there is
  * less than this much RAM leftover.) */
 /* (1KB) */
-_Min_Leftover_RAM = 0x400;
+_Min_Leftover_RAM = 0x400; 
 
 MEMORY
 {
