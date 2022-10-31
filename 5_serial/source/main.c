@@ -1,7 +1,3 @@
-#include <stdint.h>
-#include <stdio.h>
-#include <string.h>
-
 #include "stm32f070xb.h"
 #include "system_stm32f0xx.h"
 
@@ -13,7 +9,6 @@ void uart_init(void) {
     RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
     RCC->AHBENR  |= RCC_AHBENR_GPIOAEN;
     
-    // Configure pins A2, A15 for USART2 (AF7, AF3).
     GPIOA->MODER    &= ~ ((0x3 << (UART_TX*2)) | (0x3<<(UART_RX*2)));
     GPIOA->MODER    |=  ((0x2 << (UART_TX*2)) | (0x2 << (UART_RX* 2))); // setting gpio in alternate mode
 
@@ -25,7 +20,7 @@ void uart_init(void) {
 
     GPIOA->OSPEEDR  |=  ( ( 0x2 << ( UART_TX* 2 ) ) |
                           ( 0x2 << ( UART_RX* 2 ) ) ); // low speed
-    
+
     GPIOA->AFR[1] &= ~( ( 0xF << ((UART_TX%8) * 4))); // alternate function low
     GPIOA->AFR[1] |=  ( ( 0x1 << ((UART_TX%8) * 4))); // set to AF1 (USART 2)
     GPIOA->AFR[0] &= ~( ( 0xF << (UART_RX * 4 ) ) ); // this is in the datasheet
@@ -59,8 +54,8 @@ int main(void) {
     uart_init();
 
     // Main loop: wait for a new byte, then echo it back.
-    char rxb[5] = "LAKSH";
-    
+    char rxb[6] = "LAKSH\n";
+
     while (1) {
         for (int i = 0; i < 7; i++) {
             USART2->CR1 |= USART_CR1_TE;

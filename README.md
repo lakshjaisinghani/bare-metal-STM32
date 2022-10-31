@@ -4,8 +4,6 @@
 
 - [X] Run a c program
 
-- [ ] Memory allocation 
-
 - [X] GPIO 
 
 - [X] hardware interrupts
@@ -13,6 +11,8 @@
 - [X] ADCs
 
 - [ ] Serial communication
+
+- [ ] Memory allocation 
 
 - [ ] Debugging using openOCD and GDB
 
